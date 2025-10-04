@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { CustomInput, FormButton } from "../../components";
+import { useAuth } from "../../context";
 import "./Login.css";
 
 export const Login = () => {
@@ -11,6 +12,7 @@ export const Login = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleRegisterClick = () => {
@@ -51,14 +53,20 @@ export const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
-
-    setIsSubmitting(true);
-
     try {
-      setFormData({ email: "", password: "" });
+      e.preventDefault();
+
+      if (!validateForm()) return;
+
+      setIsSubmitting(true);
+
+      const result = await login(formData.email, formData.password);
+
+      if (result.success) {
+        navigate("/dashboard");
+      } else {
+        setErrors({ submit: result.error });
+      }
     } catch (error) {
       setErrors({ submit: "[ ERROR ] - Al registrar: " + error.message });
     } finally {
@@ -115,7 +123,7 @@ export const Login = () => {
           </div>
 
           {errors.submit && (
-            <div className="error-message submit-error" role="alert">
+            <div className="submit-error" role="alert">
               {errors.submit}
             </div>
           )}

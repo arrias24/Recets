@@ -16,3 +16,9 @@
   border: 1px solid #006989;
   outline: none;
 }
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px none inset;
+  -webkit-text-fill-color: black;
+  transition: background-color 5000s ease-in-out 0s;
+}

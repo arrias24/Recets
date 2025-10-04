@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../context";
 import { CustomInput, FormButton } from "../../components";
 import "./Register.css";
 
@@ -12,6 +13,7 @@ export const Register = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const { register } = useAuth();
   const navigate = useNavigate();
   const handleLoginClick = () => {
     navigate("/login");
@@ -55,13 +57,25 @@ export const Register = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
-
-    setIsSubmitting(true);
-
     try {
+      e.preventDefault();
+
+      if (!validateForm()) return;
+
+      setIsSubmitting(true);
+
+      const result = await register({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        password: formData.password,
+      });
+
+      if (result.success) {
+        navigate("/dashboard");
+      } else {
+        setErrors({ submit: result.error });
+      }
+
       setFormData({ name: "", email: "", password: "" });
       setErrors({});
     } catch (error) {
