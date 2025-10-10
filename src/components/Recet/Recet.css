@@ -1,0 +1,26 @@
+.recet {
+  width: 80%;
+  border: 2px solid #006989;
+  border-radius: 8px;
+  margin: 10px 0;
+  overflow: hidden;
+  transition: all 0.8s ease;
+}
+
+.recet--selected {
+  background: #006989;
+  color: #fff;
+  border: 2px solid #004f54;
+}
+
+.title-recet {
+  font-size: 20px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.recet:hover {
+  background: #006989;
+  color: #fff;
+  cursor: pointer;
+}

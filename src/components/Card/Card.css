@@ -1,0 +1,178 @@
+.card {
+  width: 100%;
+  max-width: 350px;
+  min-height: 280px;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Estado expandido */
+.card-expanded {
+  min-height: 280px; /* Mantiene la altura mínima */
+  max-height: 400px; /* Altura máxima cuando está expandido */
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  color: #2d3748;
+  border-bottom: 2px solid #4299e1;
+  padding-bottom: 12px;
+  flex-shrink: 0; /* Evita que el título se reduzca */
+}
+
+.card-content {
+  color: #4a5568;
+  line-height: 1.6;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-height: 200px; /* Altura fija para el contenido */
+}
+
+/* Cuando está expandido, permitir scroll */
+.card-expanded .card-content {
+  overflow-y: auto;
+  max-height: 280px; /* Más altura para el scroll */
+}
+
+/* Personalizar scrollbar */
+.card-expanded .card-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card-expanded .card-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.card-expanded .card-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.card-expanded .card-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Overlay para indicar que hay más contenido */
+.more-items-overlay {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+}
+
+.more-items-text {
+  color: #4299e1;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Indicador de expansión */
+.expand-indicator {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 11px;
+  color: #a0aec0;
+  font-weight: 500;
+  margin-top: 12px;
+  padding: 4px;
+  border-top: 1px solid #f7fafc;
+  flex-shrink: 0;
+}
+
+.card-expanded .expand-indicator {
+  font-family: sans-serif;
+  color: #4299e1;
+  font-weight: 600;
+}
+
+/* Estados vacíos */
+.empty-state {
+  color: #a0aec0;
+  font-family: sans-serif;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* Lista de ingredientes */
+.ingredient-item-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 16px;
+}
+
+.bullet {
+  color: #4299e1;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.ingredient-text {
+  flex: 1;
+  line-height: 1.5;
+}
+
+/* Lista de pasos */
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.step-number {
+  color: #4299e1;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.step-text {
+  flex: 1;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.text-line {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  margin-bottom: 10px;
+  padding: 8px 0;
+  line-height: 1.6;
+}
+
+.text-line:last-child {
+  margin-bottom: 0;
+}
