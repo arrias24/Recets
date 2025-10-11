@@ -1,7 +1,7 @@
 .card {
   width: 100%;
-  max-width: 350px;
-  min-height: 280px;
+  max-width: 220px;
+  min-height: 250px;
   background: white;
   border-radius: 16px;
   padding: 24px;
@@ -21,10 +21,9 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Estado expandido */
 .card-expanded {
-  min-height: 280px; /* Mantiene la altura mínima */
-  max-height: 400px; /* Altura máxima cuando está expandido */
+  min-height: 280px;
+  max-height: 400px;
   transform: translateY(-8px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
@@ -38,7 +37,7 @@
   color: #2d3748;
   border-bottom: 2px solid #4299e1;
   padding-bottom: 12px;
-  flex-shrink: 0; /* Evita que el título se reduzca */
+  flex-shrink: 0;
 }
 
 .card-content {
@@ -48,16 +47,14 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  max-height: 200px; /* Altura fija para el contenido */
+  max-height: 200px;
 }
 
-/* Cuando está expandido, permitir scroll */
 .card-expanded .card-content {
   overflow-y: auto;
-  max-height: 280px; /* Más altura para el scroll */
+  max-height: 280px;
 }
 
-/* Personalizar scrollbar */
 .card-expanded .card-content::-webkit-scrollbar {
   width: 6px;
 }
@@ -76,7 +73,6 @@
   background: #a8a8a8;
 }
 
-/* Overlay para indicar que hay más contenido */
 .more-items-overlay {
   position: absolute;
   bottom: -20px;
@@ -89,7 +85,6 @@
   font-weight: bold;
 }
 
-/* Indicador de expansión */
 .expand-indicator {
   text-align: center;
   font-family: sans-serif;
@@ -108,7 +103,6 @@
   font-weight: 600;
 }
 
-/* Estados vacíos */
 .empty-state {
   color: #a0aec0;
   font-family: sans-serif;
@@ -117,7 +111,6 @@
   font-size: 14px;
 }
 
-/* Lista de ingredientes */
 .ingredient-item-card {
   display: flex;
   align-items: flex-start;
@@ -138,7 +131,6 @@
   line-height: 1.5;
 }
 
-/* Lista de pasos */
 .steps-list {
   display: flex;
   flex-direction: column;
