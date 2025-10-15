@@ -157,14 +157,6 @@ export const Dashboard = () => {
   return (
     <>
       <div className="container">
-        <div className="header-user">
-          <CustomButton
-            customClass="button-logout"
-            label="Logout"
-            onClick={handleLoginClick}
-          />
-        </div>
-
         <div className="container-left">
           <h1 className="title-dashboard">Recetas {recipes.length}</h1>
           <div className="container-recipes">
@@ -184,12 +176,18 @@ export const Dashboard = () => {
             )}
           </div>
           <CustomButton
+            customClass="btn-add-recipe"
             label="Agregar receta"
             onClick={handleOpenCreateModal}
           />
         </div>
 
         <div className="container-right">
+          <CustomButton
+            customClass="button-logout"
+            label="Logout"
+            onClick={handleLoginClick}
+          />
           <h1 className="title-recipe">
             {selectedRecipe ? selectedRecipe.title : "Receta"}
           </h1>
