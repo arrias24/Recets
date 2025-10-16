@@ -113,6 +113,7 @@ body {
 }
 
 .button-logout {
+  padding: 8px 12px;
   background: #eaebed;
   border: none;
   font-family: sans-serif;
@@ -120,17 +121,17 @@ body {
   font-weight: bold;
   color: #006989;
   outline: none;
-  box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.2);
-  transition: all 0.8s ease;
+  transition: all 0.4s ease;
   position: absolute;
   right: 0px;
-  top: -60px;
+  top: -50px;
 }
 
 .button-logout:hover {
   background: #343131;
   color: #fff;
   cursor: pointer;
+  scale: 1.1;
 }
 
 .container-recipes::-webkit-scrollbar {
@@ -148,4 +149,46 @@ body {
 
 .container-recipes::-webkit-scrollbar-thumb:hover {
   background-color: #a0aec0;
+}
+
+.view-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  gap: 8px;
+
+  position: absolute;
+  top: -50px;
+  left: 0;
+}
+
+.view-btn {
+  padding: 8px 12px;
+  background: #eaebed;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 12px;
+  color: #000;
+}
+
+.view-btn--active {
+  background: #343131;
+  color: white;
+}
+
+.view-btn:hover {
+  background: #f8f9fa;
+  scale: 1.1;
+}
+
+.view-btn--active:hover {
+  background: #343131;
+}
+
+.recipe-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
 }

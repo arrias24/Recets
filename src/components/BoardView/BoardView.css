@@ -1,0 +1,111 @@
+.carousel-view {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.carousel-main {
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel-cards-container {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 100%;
+}
+
+.carousel-card-wrapper {
+  flex: 0 0 100%;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.carousel-card {
+  width: 350px;
+  height: 300px;
+  margin: 0;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.carousel-btn {
+  background: #343131;
+  color: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.carousel-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #dee2e6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicator:hover {
+  background: #b1afaf;
+  transform: scale(1.2);
+}
+
+.carousel-indicator--active {
+  background: #343131;
+  transform: scale(1.3);
+}
+
+.carousel-card-wrapper {
+  transition: opacity 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.carousel-card-wrapper {
+  animation: slideIn 0.3s ease-out;
+}

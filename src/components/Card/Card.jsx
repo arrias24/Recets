@@ -1,13 +1,14 @@
-// components/Card/Card.js
 import { useState } from "react";
 import "./Card.css";
 
 export const Card = ({
+  customClass,
   title,
   content,
   type = "text",
   onClick,
   maxItems = 3,
+  viewMode = "default",
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -20,9 +21,19 @@ export const Card = ({
   const hasMoreItems = lines.length > maxItems;
   const visibleLines = isExpanded ? lines : lines.slice(0, maxItems);
 
-  const formatContent = (linesToFormat, contentType) => {
+  const formatContent = (linesToFormat, contentType, currentViewMode) => {
     if (linesToFormat.length === 0) {
-      return <div className="empty-state">Sin contenido</div>;
+      return (
+        <div className={`empty-state ${customClass}-empty-state`}>
+          Sin contenido
+        </div>
+      );
+    }
+
+    if (currentViewMode === "compact") {
+      return formatCompact(linesToFormat, contentType);
+    } else if (currentViewMode === "minimal") {
+      return formatMinimal(linesToFormat, contentType);
     }
 
     if (contentType === "ingredients") {
@@ -34,13 +45,57 @@ export const Card = ({
     }
   };
 
+  const formatCompact = (lines, contentType) => {
+    return (
+      <div className={`compact-content ${customClass}-compact-content`}>
+        {lines.map((line, index) => (
+          <div
+            key={index}
+            className={`compact-item ${customClass}-compact-item`}
+          >
+            {contentType === "ingredients" && (
+              <span className={`compact-bullet ${customClass}-compact-bullet`}>
+                •
+              </span>
+            )}
+            {contentType === "steps" && (
+              <span className={`compact-number ${customClass}-compact-number`}>
+                {index + 1}.
+              </span>
+            )}
+            <span className={`compact-text ${customClass}-compact-text`}>
+              {line.trim()}
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const formatMinimal = (lines) => {
+    const truncatedContent = lines.join(", ").substring(0, 100);
+    return (
+      <div className={`minimal-content ${customClass}-minimal-content`}>
+        <p className={`minimal-text ${customClass}-minimal-text`}>
+          {truncatedContent}
+          {lines.join(", ").length > 100 ? "..." : ""}
+        </p>
+      </div>
+    );
+  };
+
   const formatIngredients = (lines) => {
     return (
-      <div className="">
+      <div className={`${customClass}-ingredients-container`}>
         {lines.map((line, index) => (
-          <div key={index} className="ingredient-item-card">
-            <span className="bullet">•</span>
-            <span className="ingredient-text">{line.trim()}</span>
+          <div
+            key={index}
+            className={`ingredient-item-card ${customClass}-ingredient-item`}
+          >
+            <span className={`bullet ${customClass}-bullet`}>•</span>
+            <span className={`ingredient-text ${customClass}-ingredient-text`}>
+              {line.trim()}
+            </span>
           </div>
         ))}
       </div>
@@ -49,23 +104,31 @@ export const Card = ({
 
   const formatSteps = (lines) => {
     return (
-      <div className="steps-list">
+      <div className={`steps-list ${customClass}-steps-list`}>
         {lines.map((line, index) => {
           const trimmedLine = line.trim();
           if (/^\d+\./.test(trimmedLine)) {
             const [number, ...textParts] = trimmedLine.split(".");
             const text = textParts.join(".").trim();
             return (
-              <div key={index} className="step-item">
-                <span className="step-number">{number}.</span>
-                <span className="step-text">{text}</span>
+              <div key={index} className={`step-item ${customClass}-step-item`}>
+                <span className={`step-number ${customClass}-step-number`}>
+                  {number}.
+                </span>
+                <span className={`step-text ${customClass}-step-text`}>
+                  {text}
+                </span>
               </div>
             );
           } else {
             return (
-              <div key={index} className="step-item">
-                <span className="step-number">{index + 1}.</span>
-                <span className="step-text">{trimmedLine}</span>
+              <div key={index} className={`step-item ${customClass}-step-item`}>
+                <span className={`step-number ${customClass}-step-number`}>
+                  {index + 1}.
+                </span>
+                <span className={`step-text ${customClass}-step-text`}>
+                  {trimmedLine}
+                </span>
               </div>
             );
           }
@@ -76,7 +139,7 @@ export const Card = ({
 
   const formatText = (lines) => {
     return lines.map((line, index) => (
-      <div key={index} className="text-line">
+      <div key={index} className={`text-line ${customClass}-text-line`}>
         {line.trim()}
       </div>
     ));
@@ -92,17 +155,21 @@ export const Card = ({
 
   return (
     <div
-      className={`card card-${type} ${isExpanded ? "card-expanded" : ""}`}
+      className={`card card-${type} card-${viewMode} ${
+        isExpanded ? "card-expanded" : ""
+      } ${customClass} ${customClass}-${type} ${customClass}-${viewMode} ${
+        isExpanded ? `${customClass}-expanded` : ""
+      }`}
       onClick={handleCardClick}
     >
-      <h2 className="card-title">{title}</h2>
+      <h2 className={`card-title ${customClass}-title`}>{title}</h2>
 
-      <div className="card-content">
-        {formatContent(visibleLines, type)}
+      <div className={`card-content ${customClass}-content`}>
+        {formatContent(visibleLines, type, viewMode)}
 
-        {hasMoreItems && !isExpanded && (
-          <div className="more-items-overlay">
-            <div className="more-items-text">↓</div>
+        {hasMoreItems && !isExpanded && viewMode === "default" && (
+          <div className={`more-items-overlay ${customClass}-more-overlay`}>
+            <div className={`more-items-text ${customClass}-more-text`}>↓</div>
           </div>
         )}
       </div>

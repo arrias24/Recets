@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import {
   CustomButton,
-  Card,
   Recet,
   RecipeModal,
   DeleteModal,
+  DefaultView,
+  BoardView,
+  TabsView,
+  AccordionView,
 } from "../../components";
 import { useAuth } from "../../context/AuthContext";
 import "./Dashboard.css";
@@ -15,6 +18,7 @@ export const Dashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [editingRecipe, setEditingRecipe] = useState(null);
+  const [cardViewMode, setCardViewMode] = useState("default");
 
   const { user, logout, loading: authLoading } = useAuth();
 
@@ -135,6 +139,25 @@ export const Dashboard = () => {
     setSelectedRecipe(recipe);
   };
 
+  const renderContentView = () => {
+    if (!selectedRecipe) {
+      return (
+        <p className="no-selection">
+          Selecciona una receta para ver los detalles
+        </p>
+      );
+    }
+
+    const viewComponents = {
+      default: <DefaultView recipe={selectedRecipe} />,
+      board: <BoardView recipe={selectedRecipe} />,
+      tabs: <TabsView recipe={selectedRecipe} />,
+      accordion: <AccordionView recipe={selectedRecipe} />,
+    };
+
+    return viewComponents[cardViewMode] || viewComponents.default;
+  };
+
   if (authLoading) {
     return (
       <div className="loading-container">
@@ -159,6 +182,7 @@ export const Dashboard = () => {
       <div className="container">
         <div className="container-left">
           <h1 className="title-dashboard">Recetas {recipes.length}</h1>
+
           <div className="container-recipes">
             {recipes.length === 0 ? (
               <div className="no-recipes">
@@ -175,6 +199,7 @@ export const Dashboard = () => {
               ))
             )}
           </div>
+
           <CustomButton
             customClass="btn-add-recipe"
             label="Agregar receta"
@@ -183,39 +208,52 @@ export const Dashboard = () => {
         </div>
 
         <div className="container-right">
-          <CustomButton
-            customClass="button-logout"
-            label="Logout"
-            onClick={handleLoginClick}
-          />
+          <div className="header-controls">
+            <div className="view-controls">
+              <CustomButton
+                customClass={`view-btn ${
+                  cardViewMode === "default" ? "view-btn--active" : ""
+                }`}
+                label="Cartas"
+                onClick={() => setCardViewMode("default")}
+              />
+              <CustomButton
+                customClass={`view-btn ${
+                  cardViewMode === "board" ? "view-btn--active" : ""
+                }`}
+                label="Carrusel"
+                onClick={() => setCardViewMode("board")}
+              />
+              <CustomButton
+                customClass={`view-btn ${
+                  cardViewMode === "tabs" ? "view-btn--active" : ""
+                }`}
+                label="Pestañas"
+                onClick={() => setCardViewMode("tabs")}
+              />
+              <CustomButton
+                customClass={`view-btn ${
+                  cardViewMode === "accordion" ? "view-btn--active" : ""
+                }`}
+                label="Acordeón"
+                onClick={() => setCardViewMode("accordion")}
+              />
+            </div>
+            <CustomButton
+              customClass="button-logout"
+              label="Logout"
+              onClick={handleLoginClick}
+            />
+          </div>
+
           <h1 className="title-recipe">
             {selectedRecipe ? selectedRecipe.title : "Receta"}
           </h1>
 
-          {selectedRecipe ? (
-            <>
-              <Card
-                title="Ingredientes"
-                content={selectedRecipe.ingredients}
-                type="ingredients"
-              />
-
-              <Card
-                title="Preparación"
-                content={selectedRecipe.steps}
-                type="steps"
-              />
-
-              <Card title="Notas" content={selectedRecipe.notes} type="notes" />
-            </>
-          ) : (
-            <p className="no-selection">
-              Selecciona una receta para ver los detalles
-            </p>
-          )}
+          {renderContentView()}
 
           {selectedRecipe && (
-            <>
+            <div className="recipe-actions">
               <CustomButton
                 customClass="btn-edit"
                 label="Editar"
@@ -226,7 +264,7 @@ export const Dashboard = () => {
                 label="Eliminar"
                 onClick={handleOpenDeleteModal}
               />
-            </>
+            </div>
           )}
         </div>
       </div>

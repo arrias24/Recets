@@ -5,3 +5,7 @@ export * from "./Card/Card.jsx";
 export * from "./Recet/Recet.jsx";
 export * from "./RecipeModal/RecipeModal.jsx";
 export * from "./DeleteModal/DeleteModal.jsx";
+export * from "./TasbsView/TabsView.jsx";
+export * from "./BoardView/BoardView.jsx";
+export * from "./DefaultView/DefaultView.jsx";
+export * from "./AccordionView/AccordionView.jsx";

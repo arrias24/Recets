@@ -1,0 +1,53 @@
+.accordion-view {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  height: 500px;
+}
+
+.accordion-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 380px;
+  height: 100%;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+  background-color: #006989;
+  cursor: pointer;
+}
+
+.accordion-title {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #fff;
+}
+
+.accordion-icon {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.card-acordeon {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 0 0 8px 8px;
+  margin: 0;
+  border: none;
+  font-size: 16px;
+  line-height: 15px;
+}

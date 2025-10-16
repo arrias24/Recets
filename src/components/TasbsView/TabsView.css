@@ -1,0 +1,27 @@
+.tabs-view {
+  width: 600px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.8s ease;
+}
+
+.tabs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.tab-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-tab {
+  width: 100% !important;
+  max-width: 600px !important;
+  max-height: 800px !important;
+  overflow-y: auto !important;
+  padding-right: 8px !important;
+}

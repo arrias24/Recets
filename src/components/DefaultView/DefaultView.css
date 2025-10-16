@@ -167,53 +167,7 @@
   margin-bottom: 0;
 }
 
-.card-compact {
-  padding: 12px;
-  margin: 8px 0;
-}
-
-.compact-content {
-  font-size: 18px;
-}
-
-.compact-item {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 4px;
-  line-height: 1.8;
-}
-
-.compact-bullet,
-.compact-number {
-  margin-right: 6px;
-  flex-shrink: 0;
-  color: #007bff;
-}
-
-.compact-text {
-  flex: 1;
-}
-
-.card-minimal {
-  padding: 10px;
-  margin: 6px 0;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-}
-
-.card-minimal .card-title {
-  font-size: 13px;
-  margin-bottom: 6px;
-  color: #495057;
-  font-weight: 600;
-}
-
-.minimal-content {
-  font-size: 11px;
-  color: #6c757d;
-  line-height: 1.4;
-}
-
-.minimal-text {
-  margin: 0;
+.card-expanded {
+  min-height: 280px;
+  max-height: 400px;
 }
