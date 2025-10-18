@@ -246,10 +246,6 @@ export const Dashboard = () => {
             />
           </div>
 
-          <h1 className="title-recipe">
-            {selectedRecipe ? selectedRecipe.title : "Receta"}
-          </h1>
-
           {renderContentView()}
 
           {selectedRecipe && (
